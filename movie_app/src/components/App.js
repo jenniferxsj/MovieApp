@@ -1,11 +1,10 @@
 import React, { useReducer, useEffect } from 'react';
-import logo from '../logo.svg';
 import '../App.css';
 import Header from './Header.js';
 import Movie from './Movie.js';
 import Search from './Search.js';
 
-const MOVIE_API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=4c71b1b2"; 
+const MOVIE_API_URL = "https://www.omdbapi.com/?s=super&apikey=4c71b1b2"; 
 
 const initialState = {
   loading: true,
@@ -60,6 +59,7 @@ const App = () => {
     fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4c71b1b2`)
       .then(response => response.json())
       .then(jsonResponse => {
+        console.log(jsonResponse);
         if(jsonResponse.Response === "True") {
           dispatch({
             type: "SEARCH_MOVIES_SUCCESS",
